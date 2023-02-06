@@ -1,0 +1,22 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+.explore{
+    width: 100vw;
+}
+.Explore-container{
+    width: 70vw;
+    margin-left: 18rem;
+}
+.card{
+    cursor: pointer;
+
+}
+.cardImg{
+
+    width: 12rem;
+
+    height: 18rem;
+    object-fit: cover;
+}

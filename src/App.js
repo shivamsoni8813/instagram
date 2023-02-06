@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
-
+import React from 'react'
+import Auth from './Components/Auth/Auth'
+import Navbar from './Components/Navbar/Navbar'
+import Approuter from './Components/Router/Approuter'
+import './App.css'
+import ContextState from './Components/Context/ContextState'
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="Appcontainer">
+
+        <ContextState>
+        {/* <Navbar/>  */}
+        {/* <Auth/> */}
+        <Approuter/>
+        </ContextState>
+        
     </div>
-  );
+   
+  
+  )
 }
 
-export default App;
+export default App

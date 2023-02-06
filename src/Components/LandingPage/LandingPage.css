@@ -1,0 +1,41 @@
+.LandingPage{
+    /* display: flex; */
+    width: 50rem;
+}
+
+.usercontainer{
+    /* margin-top: 2rem; */
+    margin-left: 25rem;
+
+}
+.userPic{
+    width: 3vw;
+    object-fit: cover;
+    border-radius: 50rem;
+    border: 2px solid rgb(248, 154, 12) ;
+    cursor: pointer;
+    border-top-color: rgb(236, 69, 17);
+    border-right-color: rgb(216, 40, 40);
+    
+}
+.DetailPic{
+    border: 1px solid gray;
+    height: 25rem;
+    object-fit: cover;
+}
+.userNavPic{
+    width: 4rem;
+    border: 2px solid rgb(231, 176, 25);
+    border-top-color: rgb(216, 40, 40);
+    border-right-color: rgb(216, 40, 40);
+    border-radius: 50rem;
+    margin-left: 14rem;
+
+}
+
+.cardMainImg{
+    object-fit: cover;
+}
+.userNavImg{
+    cursor: pointer;
+}

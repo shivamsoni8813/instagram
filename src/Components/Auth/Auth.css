@@ -1,0 +1,72 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+.login-wrapper{
+    float: right;
+    width: 100vw;
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 3%;
+    /* flex-direction: row; */
+}
+.left{
+    margin: 0px 20px;
+}
+
+.mid-wrapper{
+    margin-top: 10%;
+}
+
+.mid-wrapper h2{
+    font-size: 3em;
+    font-family: 'Dancing Script', cursive;
+    font-weight: 700;
+}
+
+.right{
+    height: 90vh;
+    width: 25vw;
+    margin: 0px 15px;
+    text-align: center;
+   
+}
+
+.login-inputs{
+    width: 20vw;
+    margin-left: 8%;
+    margin-top: 13%;
+}
+
+.Loginbtn{
+    width: 18vw;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 1.2em;
+    text-align: center;
+    background-color: rgb(133, 174, 212);
+}
+.signupbtn{
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    color:rgb(9 120 199);
+    font-weight: bold;
+}
+
+.info-wrapper{
+    border: 1px solid rgb(117, 99, 99);
+    height: 60vh;
+}
+
+.signup{
+    margin-top: 10%;
+    height: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border: 1px solid rgb(117, 99, 99);
+}

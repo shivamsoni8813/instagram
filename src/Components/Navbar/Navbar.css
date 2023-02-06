@@ -1,0 +1,67 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+.navbar-container{
+    border-right: 1px solid gray;
+    background-color: black;
+    /* width: 100vw; */
+    /* height: 100vh; */
+    color: white;  
+    float: left; 
+    width: 18vw;
+}
+.navbar-content{
+    cursor: pointer;
+}
+
+.navbar-detail{
+    cursor: pointer;
+    font-family: 'Dancing Script', cursive; 
+    width: 17vw;
+    padding-left: 0.1rem;
+    margin-top: 1rem;
+ 
+}
+.navbar-heading{
+    font-size: 2.3rem;
+    text-align: center;
+}
+.nabar-info ul li{
+    text-decoration: none;
+    list-style: none;
+    font-size: 1.1rem;
+    padding: 1rem;
+}
+
+.nabar-info ul li:hover{
+   border-radius: 10rem;
+   background-color: rgb(20, 20, 20);
+
+}
+
+i{
+    margin-right: 2rem;
+    font-size: 1.2rem;
+    cursor: pointer;
+
+}
+
+.dropli{
+    width: 12.4rem;
+
+}
+
+.mid{
+    top: 0;
+    margin-left: 25rem;
+}
+.homePage{
+    color: white;
+    text-decoration: none;
+    list-style: none;
+}
+Link{
+    text-decoration: none;
+    list-style: none;
+}
