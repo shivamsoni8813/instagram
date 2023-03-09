@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import Navbar from '../Navbar/Navbar'
 import Spinner from '../Utils/Spinner'
+import Picker from 'emoji-picker-react';
 import './MessageBox.css'
 function MessageBox() {
     let [userState, setUserState] = useState([])
@@ -11,6 +12,9 @@ function MessageBox() {
     let [load, setload] = useState(false)
     let [messageModal, setmessageModal] = useState(false)
     let [userinfo, setuserinfo] = useState()
+    let [chosenEmoji, setChosenEmoji] = useState(null);
+    let [show, setShow] = useState(false)
+
     let fetchuser = async () => {
         try {
             let url = `https://randomuser.me/api/?results=100`
@@ -25,6 +29,9 @@ function MessageBox() {
             console.log(e)
         }
     }
+    const onEmojiClick = (event, emojiObject) => {
+        setChosenEmoji(emojiObject);
+    };
 
     useEffect(() => {
         fetchuser()
@@ -42,17 +49,22 @@ function MessageBox() {
     }
 
     const modalButton = () => {
-        setmessageModal(true)
+        setmessageModal(!messageModal)
     }
     const userClick = (e) => {
         setuserinfo(e)
         console.log("userinfo", userinfo.picture)
+    }
+
+    let emaojiShow = () => {
+        setShow(!show)
     }
     return (
         <div>
             <Navbar />
             <div className="messageContainer">
                 <div className="message my-2 d-flex">
+
                     <div className="messageShow">
 
                         <div className="message-wrapper">
@@ -90,26 +102,51 @@ function MessageBox() {
 
                         </div>
                     </div>
+                    <div className='display-message'>
 
-                    {
-                        userinfo &&
-                        <div className="user-messageimgcontainer">
+                        {
+                            userinfo &&
+                            <div className="user-messageimgcontainer">
 
-                            <div className="user-message-imgcontainer d-flex ">
-                            <img src={userinfo.picture.large} className='user-info-Img mx-2 my-2' alt="" />
-                            <div className="user-message-info ">
-                                <span className='mx-2'>{userinfo.name.first}</span>
-                                <span className='mx-2'>message</span>
-                            </div>
-                            </div>
-                            <div className="message-util ">
+                                <div className="user-message-imgcontainer d-flex ">
+                                    <img src={userinfo.picture.large} className='user-info-Img mx-2 my-2' alt="" />
+                                    <div className="user-message-info ">
+                                        <span className='mx-2'>{userinfo.name.first}</span>
+                                        <span className='mx-2'>message</span>
+                                    </div>
+                                </div>
+                                <div className="message-util ">
 
-                            <i className="fa-solid fa-phone"></i>
-                            <i className="far fa-solid fa-video"></i>
-                            <i className="far fa-solid fa-info-circle"></i>
+                                    <i className="fa-solid fa-phone"></i>
+                                    <i className="far fa-solid fa-video"></i>
+                                    <i className="far fa-solid fa-info-circle"></i>
+                                </div>
                             </div>
+                        }
+
+                        {
+
+                            <div className="message-box-container">
+                                <div className="emoji-box">
+                                    {
+                                        show && <div className='emoji-pickar'>
+                                            <Picker onEmojiClick={onEmojiClick} width="20rem" height="20rem" />
+                                            {chosenEmoji ? (
+                                                <span >You chose:{chosenEmoji.emoji}</span>
+                                            ) : (
+                                                <span>No emoji Chosen</span>
+                                            )}
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        }
+
+
+                    </div>
+                    <div className="add-box">
+                            <i class="fa-regular fa-face-smile mx-5" onClick={() => emaojiShow()} ></i>
                         </div>
-                    }
                 </div>
             </div>
         </div>

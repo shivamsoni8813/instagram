@@ -3,7 +3,7 @@ import instaLogin from '../images/instaLogin.png'
 import './Auth.css'
 
 function Auth() {
-    
+
     return (
 
         <div>
@@ -36,13 +36,13 @@ function Auth() {
                                 </div>
                             </div>
                         </div>
-                            <div className="signup">
-                                <div className="for-signup">
-                                    <div className="signup-wrapper">
-                                        Don't have account ? <button className='signupbtn btn-primary'>SignUp</button>
-                                    </div>
+                        <div className="signup">
+                            <div className="for-signup">
+                                <div className="signup-wrapper">
+                                    Don't have account ? <button className='signupbtn btn-primary'>SignUp</button>
                                 </div>
                             </div>
+                        </div>
                     </div>
                 </div>
             </div>

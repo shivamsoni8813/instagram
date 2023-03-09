@@ -3,20 +3,23 @@ import React, { useEffect, useState } from 'react'
 import { createClient } from 'pexels'
 import Navbar from '../Navbar/Navbar';
 import "./Explore.css"
+import Spinner from '../Utils/Spinner';
 function Explore() {
 
     let [pageVideo, setpageVideo] = useState([])
     let [imgModal, setImgModal] = useState(false)
     let [modals, setmodals] = useState("nomodal")
     let [modalimg, setmodalimg] = useState("")
-
+    let [loading, setloading] = useState(false)
     const client = createClient('G0vOjVznNK86XoXMO2i595dPAPAj59toG0oNRXjS1j4k3ByrJDHGu0nu');
     let fetchVideo = async () => {
         try {
+            setloading(true)
             let { videos } = await client.videos.popular()
             console.log(videos)
-
+            
             setpageVideo(videos)
+            setloading(false)
         } catch (e) {
             console.log(e)
         }
@@ -36,6 +39,7 @@ function Explore() {
         <div className='explore container bg-black'>
             <Navbar />
             <div className="Explore-container bg-black">
+                {loading && <Spinner/>}
                 <div className="row">
                     {
                         pageVideo.map((element) => {
@@ -65,7 +69,7 @@ function Explore() {
                             <h1 className="modal-title fs-5" id="exampleModalLabel">Create Post</h1>
                             <button type="button" className="btn-close bg-white text-bg-secoundry" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div className="modal-content bg-black text-bg-white" >
+                        <div className="modal-content bg-black text-bg-white">
                             <img src={modalimg} alt="" />
                             <div className="modal-footer">
                                 <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>

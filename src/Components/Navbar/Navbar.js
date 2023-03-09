@@ -1,14 +1,20 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import './Navbar.css'
 import DataContext from '../Context/DataContext'
 import search from '../Search/SearchModal'
 import SearchModal from '../Search/SearchModal'
+import axios from 'axios'
+import Spinner from '../Utils/Spinner'
 
 function Navbar() {
     let [state, setstate] = useState(false)
     let [search, setsearch] = useState(false)
     let [modals, setmodals] = useState("nomodal")
+    let [customerData, setCustomerData] = useState([])
+    let [filterData, setFilterData] = useState([])
+    let [load, setLoad] = useState(false)
+    let [notification, setNotification] = useState([])
 
     let clickModal = () => {
         setstate(true)
@@ -18,6 +24,37 @@ function Navbar() {
     let searchclick = () => {
         setsearch(true)
     }
+
+    let searchResults = async () => {
+        try {
+            setLoad(true)
+            let url = "https://randomuser.me/api/?results=500"
+            let { data } = await axios.get(url)
+            console.log(data.results)
+            setCustomerData(data.results)
+            setFilterData(data.results)
+            setLoad(false)
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
+    let handleSearch = (el) => {
+        if (!el || el.length == 0) {
+            setFilterData(customerData)
+        }
+        else {
+            let res = customerData.filter((e) => {
+                return e.name.first.toUpperCase().includes(el.toUpperCase())
+            })
+            setFilterData([...res])
+        }
+
+    }
+
+    useEffect(() => {
+        searchResults()
+    }, [])
 
     return (
         <div>
@@ -34,20 +71,13 @@ function Navbar() {
                                 <ul className='navbar-list'>
                                     <Link to="/" className='icon'><li className='homePage'><i className=" fas fa-home-lg-alt"></i>Home</li></Link>
                                     <li data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" onClick={() => searchclick()}><i className="fas fa-search"></i>Search</li>
-                                    <Link to='/Explore'><li><i className="fa-brands fa-wpexplorer"></i>Explore</li></Link>
-                                    <Link to='/Message'><li><i className="fa-brands fa-facebook-messenger"></i>Messages</li></Link>
-                                    <Link to='/Reels'><li><i className="fa-solid fa-camera-retro"></i>Reels</li></Link>
-                                    <Link to=""><li><i className="fa-regular fa-heart"></i>Notifications</li></Link>
+                                    <Link to='/Explore'><li className='text-white'><i className="fa-brands fa-wpexplorer text-white"></i>Explore</li></Link>
+                                    <Link to='/Message'><li className='text-white'><i className="fa-brands fa-facebook-messenger"></i>Messages</li></Link>
+                                    <Link to='/Reels'><li className='text-white'><i className="fa-solid fa-camera-retro"></i>Reels</li></Link>
+                                    <li aria-controls="offcanvasExample"  data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" className='text-white'><i className="fa-regular fa-heart"></i>Notifications</li>
                                     <li data-bs-toggle={modals} data-bs-target="#exampleModal" onClick={() => clickModal()}><i className="fa-regular fa-square-plus"  ></i>Create</li>
-                                    <li><i className="fa-regular fa-circle"></i>Profile</li>
-                                    <div className="btn-group dropup">
-                                        <li className="dropli btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                            Dropup
-                                        </li>
-                                        <ul className="dropdown-menu bg-dark text-bg-primary">
-                                            <li>Logout</li>
-                                        </ul>
-                                    </div>
+                                    <li><i className="profile fa-regular"></i>Profile</li>
+                                    <Link to="/Logout"><li><i className="fa-regular fa-circle"></i>Logout</li></Link>
                                 </ul>
                             </div>
                         </div>
@@ -76,16 +106,77 @@ function Navbar() {
                 </div> : ""
             }
             {
-                search ? <div className="offcanvas offcanvas-start bg-dark" tabIndex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+                search ? <div className="offcanvas offcanvas-start bg-black" tabIndex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
                     <div className="offcanvas-header">
-                        <h5 className="offcanvas-title text-bg-secondary bg-dark" id="offcanvasExampleLabel">Search</h5>
+                        <h5 className="offcanvas-title text-bg-secondary " id="offcanvasExampleLabel">Search</h5>
                         <button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                     </div>
-                    <div className="offcanvas-body">
-                    <input type="search" className="form-control bg-dark text-bg-secondary "  id="exampleInputsearch1" aria-describedby="searchHelp"/>
+                    <div className="offcanvas-body search-conatainer">
+                        <div className="searchValues fixed-top">
+
+                            <input type="search" placeholder='search...' onInput={(e) => handleSearch(e.target.value)} className="form-control bg-dark text-white input" id="exampleInputsearch1" aria-describedby="searchHelp" />
+                        </div>
+
+                        <div className="searchSpace">
+                            {load && <Spinner />}
+                            {
+                                filterData.map((e, i) => {
+                                    return (
+                                        <div className="serach-result  bg-black text-white my-4" key={i}>
+                                            <div className="searchImg">
+
+                                                <img src={e.picture.medium} className='searchUserImg' alt="" />
+                                                <div className="searchInfo mx-3">
+                                                    <span className='userName '>{e.name.first}</span>
+                                                    <span className='userMsg'>{e.name.last}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    )
+                                })
+                            }
+
+                        </div>
+
                     </div>
-                    
-                </div> : ""
+                </div>
+                    : ""
+            }
+            {
+                notification ?<div className="offcanvas offcanvas-start bg-black" tabIndex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+                <div className="offcanvas-header">
+                    <h5 className="offcanvas-title text-bg-secondary bg-black" id="offcanvasExampleLabel">Notification</h5>
+                    <button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div className="offcanvas-body search-conatainer">
+                    <div className="searchValues fixed-top">
+
+                    </div>
+
+                    <div className="searchSpace">
+                        {load && <Spinner />}
+                        {
+                            filterData.map((e, i) => {
+                                return (
+                                    <div className="serach-result  bg-black text-white my-4" key={i}>
+                                        <div className="searchImg">
+
+                                            <img src={e.picture.medium} className='searchUserImg' alt="" />
+                                            <div className="searchInfo mx-3">
+                                                <span className='userName '>{e.name.first}</span>
+                                                <span className='userMsg'>{e.name.last}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )
+                            })
+                        }
+
+                    </div>
+
+                </div>
+            </div>
+                : "" 
             }
         </div>
 

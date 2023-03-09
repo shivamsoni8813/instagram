@@ -4,7 +4,7 @@ function Reels() {
   
     return (
     <div>
-        <input type="text" placeholder='' />
+        
     </div>
   )
 }

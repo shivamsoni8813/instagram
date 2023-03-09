@@ -3,13 +3,15 @@
     padding: 0px;
 }
 .navbar-container{
-    border-right: 1px solid gray;
+    border-right: 0.1em solid gray;
     background-color: black;
     /* width: 100vw; */
     /* height: 100vh; */
     color: white;  
     float: left; 
     width: 18vw;
+    list-style: none;
+    text-decoration: none;
 }
 .navbar-content{
     cursor: pointer;
@@ -32,6 +34,7 @@
     list-style: none;
     font-size: 1.1rem;
     padding: 1rem;
+    list-style: none;
 }
 
 .nabar-info ul li:hover{
@@ -39,7 +42,10 @@
    background-color: rgb(20, 20, 20);
 
 }
-
+li{
+    text-decoration: none;
+    list-style: none;
+}
 i{
     margin-right: 2rem;
     font-size: 1.2rem;
@@ -64,4 +70,37 @@ i{
 Link{
     text-decoration: none;
     list-style: none;
+}
+.searchImg{
+    display: flex;
+    align-items: center;
+}
+.searchUserImg{
+    width: 3rem;
+    border-radius: 50%;
+
+}
+.searchInfo{
+    display: flex;
+    flex-direction: column;
+}
+
+.searchValues{
+    margin-top: 4rem;
+}
+.input{
+    width: 24rem;
+  
+}
+.search-conatainer{
+    margin-top: 3rem;
+    border-top: 0.1rem solid gray;
+}
+
+.profile{
+    background-image: url("../images/instaLogin.png");
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    background-size: cover;
 }

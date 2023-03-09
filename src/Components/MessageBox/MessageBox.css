@@ -12,6 +12,7 @@
     height: 90vh;
     background-color: black;
     border: 1px solid gray;
+    display: flex;
 }
 .messageShow{
     height: 90vh;
@@ -57,7 +58,7 @@
     flex-direction: column;
 }
 .user-messageimgcontainer{
-    width: 60vw;
+    width: 48.3vw;
     display: flex;
     align-items: center;
     height: 4.55rem;
@@ -77,4 +78,18 @@
 }
 .user-message-imgcontainer{
     margin-left: 3rem;
+}
+.add-box{
+  margin-top: 20rem; 
+  overflow: hidden;
+}
+
+/* .display-message{
+    height: 10rem;
+} */
+.emoji-box{
+    /* padding-top: 2rem; */
+}
+.message-box-container{
+    /* margin-top: 10rem; */
 }
