@@ -1,0 +1,82 @@
+.reels{
+    width: 99vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+.iframe
+{
+    width: 35vw;
+    height: 80vh;
+    padding-left: 10rem;
+    position: relative;
+    cursor: pointer;
+}
+.groupOfItem{
+    position: absolute;
+    bottom: 11%;
+    left: 65%;
+    display: flex;
+    flex-direction: column;
+    margin-left: 2rem;
+    cursor: pointer;
+}
+.heart-Img{
+    width: 2vw;
+    margin-left: 1em;
+    height: 5vh;  
+    background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Heart_coraz%C3%B3n.svg/160px-Heart_coraz%C3%B3n.svg.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: 1;
+}
+.noHeart{
+    width: 2vw;
+    height: 5vh;
+    margin-left: 1em;
+    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9qfy2ntgD5aYKjq-wMNRqFOWAWBVxHhvJEA&usqp=CAU');
+    background-repeat: no-repeat;
+    background-size: cover;
+    border: transparent; 
+    z-index: 1;
+}
+.commentIcon{
+    font-size: 2rem;
+    margin-left: 0.5em;
+    margin-top: 0.8em;
+    
+}
+.sendIcon{
+    font-size: 2rem;
+    margin-left: 0.5em;
+    margin-top: 0.5em;
+}
+.tagIcon{
+    font-size: 2.2rem;
+    margin-top: 0.8em;
+    margin-left: 0.3em;
+    
+}
+.infoIcon
+{
+    font-size: 2.2rem;
+    margin-top: 0.8em;
+    margin-left: 0.3em;
+
+}
+.userReelImg{
+    width: 3vw;
+    height: 7vh;
+    object-fit: cover;
+    margin-left: 0.8em;
+    margin-top: 1em;
+}
+.playBtn{
+    position: absolute;
+    top: 43%;
+    left: 53%;
+    font-size: 5rem;
+    cursor: pointer;
+}

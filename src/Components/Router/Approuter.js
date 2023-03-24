@@ -5,6 +5,7 @@ import Auth from '../Auth/Auth'
 import Explore from '../Explore/Explore'
 // import LandingPage from '../LandingPage/LandingPage'
 import MessageBox from '../MessageBox/MessageBox'
+import Reels from '../Reels/Reels'
 import SearchModal from '../Search/SearchModal'
 import Spinner from '../Utils/Spinner'
 
@@ -70,6 +71,8 @@ function Approuter() {
           </Suspense>
           </>
         }></Route>
+
+        <Route path='/Reels' element={<Reels/>}></Route>
       </Routes>
     </div>
   )

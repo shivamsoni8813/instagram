@@ -74,7 +74,7 @@ function Navbar() {
                                     <Link to='/Explore'><li className='text-white'><i className="fa-brands fa-wpexplorer text-white"></i>Explore</li></Link>
                                     <Link to='/Message'><li className='text-white'><i className="fa-brands fa-facebook-messenger"></i>Messages</li></Link>
                                     <Link to='/Reels'><li className='text-white'><i className="fa-solid fa-camera-retro"></i>Reels</li></Link>
-                                    <li aria-controls="offcanvasExample"  data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" className='text-white'><i className="fa-regular fa-heart"></i>Notifications</li>
+                                    <li data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions" className='text-white'><i className="fa-regular fa-heart"></i>Notifications</li>
                                     <li data-bs-toggle={modals} data-bs-target="#exampleModal" onClick={() => clickModal()}><i className="fa-regular fa-square-plus"  ></i>Create</li>
                                     <li><i className="profile fa-regular"></i>Profile</li>
                                     <Link to="/Logout"><li><i className="fa-regular fa-circle"></i>Logout</li></Link>
@@ -105,16 +105,17 @@ function Navbar() {
                     </div>
                 </div> : ""
             }
+
             {
                 search ? <div className="offcanvas offcanvas-start bg-black" tabIndex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
                     <div className="offcanvas-header">
-                        <h5 className="offcanvas-title text-bg-secondary " id="offcanvasExampleLabel">Search</h5>
+                        <h5 className="offcanvas-title text-secondary " id="offcanvasExampleLabel">Search</h5>
                         <button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                     </div>
                     <div className="offcanvas-body search-conatainer">
                         <div className="searchValues fixed-top">
 
-                            <input type="search" placeholder='search...' onInput={(e) => handleSearch(e.target.value)} className="form-control bg-dark text-white input" id="exampleInputsearch1" aria-describedby="searchHelp" />
+                            <input type="search" placeholder='search...' onInput={(e) => handleSearch(e.target.value)} className="form-control bg-white text-black " id="exampleInputsearch1" aria-describedby="searchHelp" />
                         </div>
 
                         <div className="searchSpace">
@@ -142,42 +143,46 @@ function Navbar() {
                 </div>
                     : ""
             }
-            {
-                notification ?<div className="offcanvas offcanvas-start bg-black" tabIndex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
-                <div className="offcanvas-header">
-                    <h5 className="offcanvas-title text-bg-secondary bg-black" id="offcanvasExampleLabel">Notification</h5>
-                    <button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                </div>
-                <div className="offcanvas-body search-conatainer">
-                    <div className="searchValues fixed-top">
 
-                    </div>
+            {notification ?
+                <div className="notify">
 
-                    <div className="searchSpace">
-                        {load && <Spinner />}
-                        {
-                            filterData.map((e, i) => {
-                                return (
-                                    <div className="serach-result  bg-black text-white my-4" key={i}>
-                                        <div className="searchImg">
+                    <div className="offcanvas offcanvas-start bg-black" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
 
-                                            <img src={e.picture.medium} className='searchUserImg' alt="" />
-                                            <div className="searchInfo mx-3">
-                                                <span className='userName '>{e.name.first}</span>
-                                                <span className='userMsg'>{e.name.last}</span>
+                        <div class="offcanvas-header">
+                            <h5 className="offcanvas-title text-bg-secondary bg-black" id="offcanvasExampleLabel">Notification</h5>
+                            <button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                        </div>
+                        <div className="offcanvas-body search-conatainer">
+
+
+                            <div className="notification">
+                                {load && <Spinner />}
+                                {
+                                    filterData.map((e, i) => {
+                                        return (
+                                            <div className="serach-result  bg-black text-white my-4" key={i}>
+                                                <div className="searchImg">
+
+                                                    <img src={e.picture.medium} className='searchUserImg' alt="" />
+                                                    <div className="searchInfo mx-3">
+                                                        <span className='userName '>{e.name.first}</span>
+                                                        <span className='userMsg'>{e.name.last}</span>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                )
-                            })
-                        }
+                                        )
+                                    })
+                                }
 
+                            </div>
+
+                        </div>
                     </div>
-
                 </div>
-            </div>
-                : "" 
+                : ""
             }
+
         </div>
 
     )

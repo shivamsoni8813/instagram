@@ -14,7 +14,10 @@ function MessageBox() {
     let [userinfo, setuserinfo] = useState()
     let [chosenEmoji, setChosenEmoji] = useState(null);
     let [show, setShow] = useState(false)
-
+    let [sendBtnShw, setSendBtnShow] = useState(false)
+    let [messagText, setMessageText]=useState("")
+    let [showCard, setShowCard] = useState(false)
+    let [clickValue, setClickValue] = useState([])
     let fetchuser = async () => {
         try {
             let url = `https://randomuser.me/api/?results=100`
@@ -59,6 +62,16 @@ function MessageBox() {
     let emaojiShow = () => {
         setShow(!show)
     }
+    let handleMessageChange = (e) => {
+        setSendBtnShow(true)
+        setMessageText(e.target.value)
+    }
+    let sendMessageToPerson=()=>{
+        setClickValue(messagText)
+        setShowCard(true)
+        setSendBtnShow(false)
+    }
+    console.log(clickValue)
     return (
         <div>
             <Navbar />
@@ -123,7 +136,19 @@ function MessageBox() {
                                 </div>
                             </div>
                         }
-
+{/* 
+                        {  
+                            clickValue.map((item)=>{
+                                return(
+                            <div className="card text-bg-dark mb-3" style={{maxWidth: "18rem"}}>
+                            <div className="card-body">
+                              <p className="card-text">{item}</p>
+                            </div>
+                             </div>
+                                )
+                            }) 
+                        } */}
+                        
                         {
 
                             <div className="message-box-container">
@@ -133,20 +158,39 @@ function MessageBox() {
                                             <Picker onEmojiClick={onEmojiClick} width="20rem" height="20rem" />
                                             {chosenEmoji ? (
                                                 <span >You chose:{chosenEmoji.emoji}</span>
-                                            ) : (
-                                                <span>No emoji Chosen</span>
-                                            )}
+                                            ) : ""
+                                            }
                                         </div>
                                     }
                                 </div>
                             </div>
                         }
 
+                        {userinfo ?
+                            <div className="add-box">
+                                <i className="fa-regular fa-face-smile editIconShow" onClick={() => emaojiShow()} ></i>
+                                <input type="text" placeholder='message...' onChange={(e) => handleMessageChange(e)} className='messageTextArea' />
+                                {
+                                    sendBtnShw ?
+                                        <>
+                                            <button className='btn btn-primary' onClick={()=>sendMessageToPerson()}>Send</button>
 
+                                        </>
+                                        :
+                                        <>
+                                            <span className="material-icons">add_photo_alternate</span>
+                                            <span className="material-icons">favorite_border</span>
+                                        </>
+
+                                }
+                            </div> :
+                            <div className='messageSendIcon'>
+                                <span className="material-icons messageSend">send</span>
+                                <h1 className='messageSendMsg'>Your Messages</h1>
+                                <p className='messageSendMsgInfo'>Send private photos and messages to a friend or group</p>
+                            </div>
+                        }
                     </div>
-                    <div className="add-box">
-                            <i class="fa-regular fa-face-smile mx-5" onClick={() => emaojiShow()} ></i>
-                        </div>
                 </div>
             </div>
         </div>
